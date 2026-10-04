@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Focus | Todo list</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR DAILY SPACE</p>
+        <h1>Make room for<br><em>what matters.</em></h1>
+        <p class="intro">A calm place to capture your priorities and keep momentum.</p>
+      </div>
+      <div class="date-card">
+        <span id="today"></span>
+        <strong id="progress-label">0% complete</strong>
+        <div class="progress-track"><span id="progress-bar"></span></div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <form id="todo-form" class="composer">
+        <input id="todo-title" name="title" maxlength="120" placeholder="What needs to be done?" autocomplete="off" required>
+        <input id="todo-description" name="description" placeholder="Add a note (optional)" autocomplete="off">
+        <button type="submit" class="primary-button">Add task <span>+</span></button>
+      </form>
+
+      <div class="toolbar">
+        <div class="filters" role="tablist" aria-label="Filter tasks">
+          <button class="filter active" data-filter="all" role="tab">All <span id="all-count">0</span></button>
+          <button class="filter" data-filter="active" role="tab">In progress <span id="active-count">0</span></button>
+          <button class="filter" data-filter="completed" role="tab">Completed <span id="completed-count">0</span></button>
+        </div>
+        <button id="clear-completed" class="text-button" type="button">Clear completed</button>
+      </div>
+
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+      <ul id="todo-list" class="todo-list"></ul>
+      <div id="empty-state" class="empty-state" hidden>
+        <div class="empty-icon">✦</div>
+        <h2>Nothing here yet</h2>
+        <p>Add a task above and take the first step.</p>
+      </div>
+    </section>
+    <footer>FOCUS <span>·</span> one thoughtful task at a time</footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+</html>
