@@ -17,6 +17,7 @@ permissions:
   contents: read
   security-events: write
   packages: write
+  pull-requests: read
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -24,8 +25,10 @@ concurrency:
 
 jobs:
   build-test-and-push:
+    name: Build, Test, Scan & Push Docker Image
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -90,11 +93,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.sha }}
             ${{ env.IMAGE_NAME }}:latest
           provenance: false
 
-      - name: Deployment notification
-        run: echo "Deploying application to target environment"
+      - name: Log pipeline completion
+        run: echo "Pipeline execution successfully completed for commit ${{ github.sha }}"
