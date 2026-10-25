@@ -97,5 +97,5 @@ jobs:
           provenance: false
 
       - name: Deployment notification
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/main-secondary'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main-secondary'
         run: echo "Deploying application to target environment"
